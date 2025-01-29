@@ -1,0 +1,138 @@
+<modDesc descVersion="95">
+	<author>Fetty42</author>
+	<version>1.0.0.0</version>
+	<title>
+		<en>Farmland Overview</en>
+		<de>Feldübersicht</de>
+		<fr>Aperçu Terres Agricoles</fr>
+	</title>
+    <description>
+        <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die Eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
+Die folgenden Infos werden angezeigt:
+- Nummer
+- Besitzer
+- Landfläche
+- Feldfläche
+- Fruchtart
+- Status
+
+Die Anzeige kann mit der Tastenkombination Shift + L aufgerufen werden.
+
+Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
+
+Für Fehlermeldungen oder Anregungen besucht bitte: https://github.com/Fetty42/FS25_FarmlandOverview/issues oder https://forum.giants-software.com/viewtopic.php?t=208708]]></de>
+
+		<en><![CDATA[With this MOD you can quickly get an overview of all farmlands and fields. Your own fields are displayed first. You can also teleport directly to a farmland/field.
+The following information is displayed:
+- Number
+- Owner
+- Farmland area
+- Field area
+- Crop
+- Stage
+
+The display can be called up with the key combination Shift + L.
+
+Currently, rice/olive and grape fields created via the construction menu are not yet displayed.
+
+For error messages or suggestions please visit: https://github.com/Fetty42/FS25_FarmlandOverview/issues or https://forum.giants-software.com/viewtopic.php?t=208708]]></en>
+
+		<fr><![CDATA[Avec ce MOD, vous pouvez rapidement obtenir un aperçu de toutes les terres agricoles et des champs. Vos propres champs sont affichés en premier. Vous pouvez également vous téléporter directement vers une terre/champ.
+Les informations suivantes sont affichées:
+- Numéro
+- Propriétaire
+- Superficie des terres agricoles
+- Superficie du champ
+- Culture
+- Stade
+
+L'affichage peut être appelé avec la combinaison de touches Maj + L.
+
+Actuellement, les champs de riz/olives et de raisins créés via le menu de construction ne sont pas encore affichés.
+
+Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github.com/Fetty42/FS25_FarmlandOverview/issues ou https://forum.giants-software.com/viewtopic.php?t=208708]]></fr>
+
+    </description>
+	
+	<iconFilename>icon_FarmlandOverview.dds</iconFilename>
+	<multiplayer supported="true" />
+	<extraSourceFiles>
+		<sourceFile filename="FarmlandOverview.lua" />
+		<sourceFile filename="RegisterPlayerActionEvents.lua" />
+	</extraSourceFiles>
+
+    <actions>
+      	<action name="SHOW_FIELD_DLG" category="SYSTEM" />
+  	</actions>	
+  	<inputBinding>
+      	<actionBinding action="SHOW_FIELD_DLG">
+        	<binding device="KB_MOUSE_DEFAULT" input="KEY_rshift KEY_l" />
+      	</actionBinding>
+  	</inputBinding>	
+	<l10n>
+		<text name="input_SHOW_FIELD_DLG">
+			<de>Felderübersicht</de>
+			<en>Farmland Overview</en>
+			<fr>Terre Agricole Aperçu</fr>
+		</text>
+
+	<!-- Dlg -->
+        <text name="ui_fieldDlg_title">
+			<de>Übersicht der Länder und Felder</de>
+			<en>Farmland and Field Overview</en>
+			<fr>Aperçu des terres agricoles et des champs</fr>
+		</text>		
+        <text name="ui_fieldDlg_btnClose">
+			<de>Schließen</de>	
+			<en>Close</en>
+			<fr>Fermer</fr>
+		</text>		
+        <text name="ui_fieldDlg_btnWarp">
+			<de>Warp zum Land/Feld</de>	
+			<en>Warp to farmland/field</en>
+			<fr>Distorsion vers terre/champ</fr>
+		</text>		
+
+        <text name="ui_fieldDlg_hbFieldNum">
+			<de>Nr.</de>	
+			<en>No.</en>
+			<fr>No.</fr>
+		</text>		
+        <text name="ui_fieldDlg_hbOwner">
+			<de>Eigentümer</de>	
+			<en>Owner</en>
+			<fr>Propriétaire</fr>
+		</text>		
+        <text name="ui_fieldDlg_hbFarmlandArea">
+			<de>Land</de>	
+			<en>Farmland</en>
+			<fr>Terres</fr>
+		</text>		
+        <text name="ui_fieldDlg_hbFieldArea">
+			<de>Feld</de>	
+			<en>Field</en>
+			<fr>Champ</fr>
+		</text>		
+        <text name="ui_fieldDlg_hbCrop">
+			<de>Fruchtart</de>	
+			<en>Crop type</en>
+			<fr>Culture</fr>
+		</text>		
+        <text name="ui_fieldDlg_hbCropState">
+			<de>Status</de>	
+			<en>State</en>
+			<fr>Stade</fr>
+		</text>		
+	<!-- Text -->
+        <text name="ownerYou">
+			<de>Dir</de>	
+			<en>You</en>
+			<fr>Vous</fr>
+		</text>		
+        <text name="ownerUnknown">
+			<de>Unbekannt</de>	
+			<en>Unknown</en>
+			<fr>Inconnu</fr>
+		</text>		
+	</l10n>
+</modDesc>
