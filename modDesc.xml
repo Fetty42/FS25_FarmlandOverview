@@ -1,6 +1,6 @@
-<modDesc descVersion="95">
+<modDesc descVersion="96">
 	<author>Fetty42</author>
-	<version>1.0.0.0</version>
+	<version>1.0.1.0</version>
 	<title>
 		<en>Farmland Overview</en>
 		<de>Feldübersicht</de>
@@ -20,6 +20,10 @@ Die Anzeige kann mit der Tastenkombination Shift + L aufgerufen werden.
 
 Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
 
+Changelog 1.0.1.0:
+- Fehlerhafte Anzeige von Flächengrößen in Acres behoben
+- Absturz bei der Verwendung von expliziten Farmlandnamen die keine Zahl sind behoben (z.b. bei der "Riverbend Springs Edit" MOD-Karte)
+
 Für Fehlermeldungen oder Anregungen besucht bitte: https://github.com/Fetty42/FS25_FarmlandOverview/issues oder https://forum.giants-software.com/viewtopic.php?t=208708]]></de>
 
 		<en><![CDATA[With this MOD you can quickly get an overview of all farmlands and fields. Your own fields are displayed first. You can also teleport directly to a farmland/field.
@@ -35,6 +39,10 @@ The display can be called up with the key combination Shift + L.
 
 Currently, rice/olive and grape fields created via the construction menu are not yet displayed.
 
+Changelog 1.0.1.0:
+- Fixed incorrect display of area sizes in acres
+- Fixed crash when using explicit farmland names that are not numbers (e.g. on the "Riverbend Springs Edit" MOD map)
+
 For error messages or suggestions please visit: https://github.com/Fetty42/FS25_FarmlandOverview/issues or https://forum.giants-software.com/viewtopic.php?t=208708]]></en>
 
 		<fr><![CDATA[Avec ce MOD, vous pouvez rapidement obtenir un aperçu de toutes les terres agricoles et des champs. Vos propres champs sont affichés en premier. Vous pouvez également vous téléporter directement vers une terre/champ.
@@ -49,6 +57,10 @@ Les informations suivantes sont affichées:
 L'affichage peut être appelé avec la combinaison de touches Maj + L.
 
 Actuellement, les champs de riz/olives et de raisins créés via le menu de construction ne sont pas encore affichés.
+
+Changelog 1.0.1.0:
+- Correction de l'affichage incorrect des tailles de surface en acres
+- Correction du crash lors de l'utilisation de noms explicites de terres agricoles qui ne sont pas des nombres (par exemple, sur la carte MOD "Riverbend Springs Edit")
 
 Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github.com/Fetty42/FS25_FarmlandOverview/issues ou https://forum.giants-software.com/viewtopic.php?t=208708]]></fr>
 

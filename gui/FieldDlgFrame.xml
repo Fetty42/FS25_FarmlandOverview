@@ -10,8 +10,8 @@
 
             <!-- Main list -->
             <Bitmap profile="FarmlandDlgList" id="tableHeaderBox" position="45px -90px" size="950px 50px">
-                <Text profile="FarmlandDlgHeaderRight" position="15px -0px" size="35px 40.77px" text="$l10n_ui_fieldDlg_hbFieldNum"/>
-                <Text profile="FarmlandDlgHeaderLeft" position="80px -0px" size="150px 40.77px" text="$l10n_ui_fieldDlg_hbOwner"/>
+                <Text profile="FarmlandDlgHeaderRight" position="15px -0px" size="45px 40.77px" text="$l10n_ui_fieldDlg_hbFieldNum"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="90px -0px" size="140px 40.77px" text="$l10n_ui_fieldDlg_hbOwner"/>
                 <Text profile="FarmlandDlgHeaderRight" position="230px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFarmlandArea"/>
                 <Text profile="FarmlandDlgHeaderRight" position="330px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFieldArea"/>
                 <Text profile="FarmlandDlgHeaderLeft" position="460px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCrop"/>
@@ -21,13 +21,13 @@
 
             <SmoothList profile="FarmlandDlgList" id="overviewTable" position="50px -145px" size="945px 550px" focusInit="onOpen" focusChangeTop="nil" focusChangeBottom="nil" onDoubleClick="onButtonWarpToField">
                 <ListItem profile="FarmlandDlgListItem"  name="orderRowTemplate" size="950px 40.77px">
-                    <Text profile="FarmlandDlgRowCellRight" position="15px 0px" size="35px 40.77px" name="farmlandName" />
-                    <Text profile="FarmlandDlgRowCellLeft" position="80px 0px" size="150px 40.77px" name="farmlandOwner" />
+                    <Text profile="FarmlandDlgRowCellRight" position="1px 0px" size="55px 40.77px" name="farmlandName" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="90px 0px" size="140px 40.77px" name="farmlandOwner" textLayoutMode="scrolling"/>
                     <Text profile="FarmlandDlgRowCellRight" position="230px 0px" size="100px 40.77px" name="farmlandAreaHa" />
                     <Text profile="FarmlandDlgRowCellRight" position="330px 0px" size="100px 40.77px" name="fieldAreaHa" />
                     <Bitmap profile="FarmlandDlgRowCellImage" position="455px 0px" name="ftIcon" />
-                    <Text profile="FarmlandDlgRowCellLeft" position="485px 0px" size="170px 40.77px" name="fieldCrop" />
-                    <Text profile="FarmlandDlgRowCellLeft" position="650px 0px" size="200px 40.77px" name="fieldCropState" />
+                    <Text profile="FarmlandDlgRowCellLeft" position="485px 0px" size="170px 40.77px" name="fieldCrop" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="650px 0px" size="200px 40.77px" name="fieldCropState" textLayoutMode="scrolling"/>
                 </ListItem>
             </SmoothList>
 

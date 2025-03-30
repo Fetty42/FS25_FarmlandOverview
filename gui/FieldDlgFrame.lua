@@ -1,6 +1,6 @@
 -- Author: Fetty42
--- Date: 2024-12-09
--- Version: 1.0.0.0
+-- Date: 30.03.2025
+-- Version: 1.0.1.0
 
 
 local isDbPrintfOn = false
@@ -53,7 +53,11 @@ function FieldDlgFrame:onOpen()
 
     table.sort(self.farmlands, function(a, b)
         if a.sectionOrder == b.sectionOrder then
-            return tonumber(a.farmland.name) < tonumber(b.farmland.name)
+            if tonumber(a.farmland.name) ~= nil and tonumber(b.farmland.name) ~= nil then
+                return tonumber(a.farmland.name) < tonumber(b.farmland.name)
+            else 
+                return a.farmland.name < b.farmland.name
+            end
         else
             return a.sectionOrder < b.sectionOrder
         end
@@ -83,7 +87,7 @@ function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
 
         -- Set attributes for the farmland output
         cell:getAttribute("farmlandName"):setText(thisFarmland.name)
-        cell:getAttribute("farmlandAreaHa"):setText(string.format("%1.2f ", thisFarmland.areaInHa) .. g_i18n:getAreaUnit())
+        cell:getAttribute("farmlandAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(thisFarmland.areaInHa)) .. g_i18n:getAreaUnit())
 
         local farmName, farmColor = FieldDlgFrame:getFarmNameAndColor(thisFarmland)
         cell:getAttribute("farmlandOwner"):setText(farmName)
@@ -135,7 +139,7 @@ function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
                 cell:getAttribute("ftIcon"):setVisible(false)
             end
             -- end
-            cell:getAttribute("fieldAreaHa"):setText(string.format("%1.2f ", field.areaHa) .. g_i18n:getAreaUnit())
+            cell:getAttribute("fieldAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(field.areaHa)) .. g_i18n:getAreaUnit())
             cell:getAttribute("fieldCrop"):setText(fruitNamePos)
             cell:getAttribute("fieldCropState"):setText(fruitStatePos)
         else
