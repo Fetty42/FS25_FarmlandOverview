@@ -5,6 +5,7 @@
 		<en>Farmland Overview</en>
 		<de>Feldübersicht</de>
 		<fr>Aperçu Terres Agricoles</fr>
+		<uk>Огляд сільськогосподарських угідь</uk>
 	</title>
     <description>
         <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die Eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
@@ -64,6 +65,21 @@ Changelog 1.0.1.0:
 
 Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github.com/Fetty42/FS25_FarmlandOverview/issues ou https://forum.giants-software.com/viewtopic.php?t=208708]]></fr>
 
+	    <uk><![CDATA[За допомогою цього модуля ви можете швидко отримати огляд усіх сільськогосподарських угідь та полів. Ваші власні поля відображаються першими. Ви також можете телепортуватися безпосередньо на сільськогосподарські угіддя/поля.
+Відображається наступна інформація:
+- Номер
+- Власник
+- Площа сільськогосподарських угідь
+- Площа поля
+- Культура
+- Стадія
+
+Відображення можна викликати за допомогою комбінації клавіш Shift + L.
+
+Наразі рисові/оливкові та виноградні поля, створені через меню будівництва, ще не відображаються.
+
+Для повідомлень про помилки або пропозицій, будь ласка, відвідайте сторінку: https://github.com/Fetty42/FS25_FarmlandOverview/issues or https://forum.giants-software.com/viewtopic.php?t=208708]]></uk>
+
     </description>
 	
 	<iconFilename>icon_FarmlandOverview.dds</iconFilename>
@@ -86,6 +102,7 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 			<de>Felderübersicht</de>
 			<en>Farmland Overview</en>
 			<fr>Terre Agricole Aperçu</fr>
+			<uk>Огляд сільськогосподарських угідь</uk>
 		</text>
 
 	<!-- Dlg -->
@@ -93,58 +110,69 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 			<de>Übersicht der Länder und Felder</de>
 			<en>Farmland and Field Overview</en>
 			<fr>Aperçu des terres agricoles et des champs</fr>
+		        <uk>Огляд сільськогосподарських угідь та полів</uk>
 		</text>		
         <text name="ui_fieldDlg_btnClose">
 			<de>Schließen</de>	
 			<en>Close</en>
 			<fr>Fermer</fr>
+		        <uk>Закрити</uk>
 		</text>		
         <text name="ui_fieldDlg_btnWarp">
 			<de>Warp zum Land/Feld</de>	
 			<en>Warp to farmland/field</en>
 			<fr>Distorsion vers terre/champ</fr>
+		        <uk>Відвідати сільськогосподарське угіддя/поле</uk>
 		</text>		
 
         <text name="ui_fieldDlg_hbFieldNum">
 			<de>Nr.</de>	
 			<en>No.</en>
 			<fr>No.</fr>
+		        <uk>Ні.</uk>
 		</text>		
         <text name="ui_fieldDlg_hbOwner">
 			<de>Eigentümer</de>	
 			<en>Owner</en>
 			<fr>Propriétaire</fr>
+		        <uk>Власник</uk>
 		</text>		
         <text name="ui_fieldDlg_hbFarmlandArea">
 			<de>Land</de>	
 			<en>Farmland</en>
 			<fr>Terres</fr>
+		        <uk>Сільськогосподарські угіддя</uk>
 		</text>		
         <text name="ui_fieldDlg_hbFieldArea">
 			<de>Feld</de>	
 			<en>Field</en>
 			<fr>Champ</fr>
+		        <uk>Поле</uk>
 		</text>		
         <text name="ui_fieldDlg_hbCrop">
 			<de>Fruchtart</de>	
 			<en>Crop type</en>
 			<fr>Culture</fr>
+		        <uk>Тип культури</uk>
 		</text>		
         <text name="ui_fieldDlg_hbCropState">
 			<de>Status</de>	
 			<en>State</en>
 			<fr>Stade</fr>
+		        <uk>Статус</uk>
 		</text>		
 	<!-- Text -->
         <text name="ownerYou">
 			<de>Dir</de>	
 			<en>You</en>
 			<fr>Vous</fr>
+		        <uk>Ти</uk>
 		</text>		
         <text name="ownerUnknown">
 			<de>Unbekannt</de>	
 			<en>Unknown</en>
 			<fr>Inconnu</fr>
+		        <uk>Невідомо</uk>
 		</text>		
 	</l10n>
 </modDesc>
