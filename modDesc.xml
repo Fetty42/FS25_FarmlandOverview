@@ -8,7 +8,7 @@
 		<uk>Огляд сільськогосподарських угідь</uk>
 	</title>
     <description>
-        <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die Eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
+        <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
 Die folgenden Infos werden angezeigt:
 - Nummer
 - Besitzer
@@ -17,13 +17,13 @@ Die folgenden Infos werden angezeigt:
 - Fruchtart
 - Status
 
-Die Anzeige kann mit der Tastenkombination Shift + L aufgerufen werden.
+Die Anzeige kann mit der Tastenkombination RShift + L aufgerufen werden.
 
 Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
 
 Changelog 1.0.1.0:
 - Fehlerhafte Anzeige von Flächengrößen in Acres behoben
-- Absturz bei der Verwendung von expliziten Farmlandnamen die keine Zahl sind behoben (z.b. bei der "Riverbend Springs Edit" MOD-Karte)
+- Absturz bei der Verwendung von expliziten Farmlandnamen, die keine Zahl sind, behoben (z.B. bei der "Riverbend Springs Edit" MOD-Karte)
 
 Für Fehlermeldungen oder Anregungen besucht bitte: https://github.com/Fetty42/FS25_FarmlandOverview/issues oder https://forum.giants-software.com/viewtopic.php?t=208708]]></de>
 
@@ -36,7 +36,7 @@ The following information is displayed:
 - Crop
 - Stage
 
-The display can be called up with the key combination Shift + L.
+The display can be called up with the key combination RShift + L.
 
 Currently, rice/olive and grape fields created via the construction menu are not yet displayed.
 
@@ -55,7 +55,7 @@ Les informations suivantes sont affichées:
 - Culture
 - Stade
 
-L'affichage peut être appelé avec la combinaison de touches Maj + L.
+L'affichage peut être appelé avec la combinaison de touches Maj. droite + L.
 
 Actuellement, les champs de riz/olives et de raisins créés via le menu de construction ne sont pas encore affichés.
 
@@ -74,7 +74,7 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 - Культура
 - Стадія
 
-Відображення можна викликати за допомогою комбінації клавіш Shift + L.
+Відображення можна викликати за допомогою комбінації клавіш RShift + L.
 
 Наразі рисові/оливкові та виноградні поля, створені через меню будівництва, ще не відображаються.
 
