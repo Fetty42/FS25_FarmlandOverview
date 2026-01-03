@@ -16,6 +16,8 @@ FieldDlgFrame = {}
 local DlgFrame_mt = Class(FieldDlgFrame, MessageDialog)
 
 FieldDlgFrame.mixDlg	= nil
+FieldDlgFrame.lastSelectedIndex = nil   -- Restore the previous position in the list
+
 
 
 function FieldDlgFrame.new(target, custom_mt)
@@ -55,7 +57,7 @@ function FieldDlgFrame:onOpen()
         if a.sectionOrder == b.sectionOrder then
             if tonumber(a.farmland.name) ~= nil and tonumber(b.farmland.name) ~= nil then
                 return tonumber(a.farmland.name) < tonumber(b.farmland.name)
-            else 
+            else
                 return a.farmland.name < b.farmland.name
             end
         else
@@ -65,6 +67,11 @@ function FieldDlgFrame:onOpen()
 
     -- finalize dialog
 	self.overviewTable:reloadData()
+
+        --  Restore the previous position
+    if FieldDlgFrame.lastSelectedIndex ~= nil then
+        self.overviewTable:setSelectedItem(1, FieldDlgFrame.lastSelectedIndex)
+    end
 
 	self:setSoundSuppressed(true)
     FocusManager:setFocus(self.overviewTable)
@@ -86,6 +93,12 @@ function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
         local thisFarmland      = self.farmlands[index].farmland
 
         -- Set attributes for the farmland output
+        local isSale = FS25_MyCollection_DH ~=nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer[thisFarmland.name] ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer[thisFarmland.name] == true
+        if isSale then
+            cell:getAttribute("farmlandName"):setTextColor(1, 0, 0, 1)  -- red
+        else
+            cell:getAttribute("farmlandName").textColor = cell:getAttribute("farmlandAreaHa").textColor  -- default
+        end
         cell:getAttribute("farmlandName"):setText(thisFarmland.name)
         cell:getAttribute("farmlandAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(thisFarmland.areaInHa)) .. g_i18n:getAreaUnit())
 
@@ -225,6 +238,7 @@ end
 function FieldDlgFrame:onButtonWarpToField()
     dbPrintf("FieldDlgFrame:onButtonWarpField()")
 
+    FieldDlgFrame.lastSelectedIndex = self.overviewTable.selectedIndex
     local warpX, warpY, warpZ = 0, 0, 0
     local dropHeight       = 1.2
     local thisFarmland     = self.farmlands[self.overviewTable.selectedIndex].farmland
@@ -243,10 +257,11 @@ function FieldDlgFrame:onButtonWarpToField()
     g_gui:showGui("")
 
     if g_localPlayer ~= nil and g_localPlayer:getCurrentVehicle() ~= nil then
-        local curVehicle = g_localPlayer:getCurrentVehicle()
-        curVehicle:doLeaveVehicle()
+        g_localPlayer:leaveVehicle()
+        -- local curVehicle = g_localPlayer:getCurrentVehicle()
+        -- curVehicle:doLeaveVehicle()
     end
-    g_localPlayer:teleportTo(warpX, warpY + dropHeight, warpZ)
+    g_localPlayer:teleportTo(warpX, warpY + dropHeight, warpZ, false, false)
 
 
     -- Test, to get mor Infos

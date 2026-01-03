@@ -21,6 +21,12 @@ Die Anzeige kann mit der Tastenkombination Shift + L aufgerufen werden.
 
 Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
 
+Changelog
+- Übersetzung für Ukrainisch  hinzugefügt (Danke an daniilua)
+- Automatisch zum letzten verwendeten Feld springen, wenn das Fenster erneut geöffnet wird.
+- (intern) Markierung der zum verkauf stehenden Felder (LimitedFieldSellAndBuy MOD) hinzugefügt.
+
+
 Changelog 1.0.1.0:
 - Fehlerhafte Anzeige von Flächengrößen in Acres behoben
 - Absturz bei der Verwendung von expliziten Farmlandnamen die keine Zahl sind behoben (z.b. bei der "Riverbend Springs Edit" MOD-Karte)
@@ -77,6 +83,10 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 Відображення можна викликати за допомогою комбінації клавіш Shift + L.
 
 Наразі рисові/оливкові та виноградні поля, створені через меню будівництва, ще не відображаються.
+
+Changelog 1.0.1.0:
+- Виправлено некоректне відображення розмірів площ в акрах
+- Виправлено збій при використанні явних назв сільськогосподарських угідь, які не є числами (наприклад, на мапі "Riverbend Springs Edit")
 
 Для повідомлень про помилки або пропозицій, будь ласка, відвідайте сторінку: https://github.com/Fetty42/FS25_FarmlandOverview/issues or https://forum.giants-software.com/viewtopic.php?t=208708]]></uk>
 
