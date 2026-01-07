@@ -19,11 +19,12 @@ FieldDlgFrame.mixDlg	= nil
 FieldDlgFrame.lastSelectedIndex = nil   -- Restore the previous position in the list
 
 
-
 function FieldDlgFrame.new(target, custom_mt)
 	dbPrintf("FieldDlgFrame:new()")
 	local self = MessageDialog.new(target, custom_mt or DlgFrame_mt)
     self.fields = {}
+    self.sortColumn = "number" -- default sort by number (Nr.)
+    self.sortAscending = true
 	return self
 end
 
@@ -45,25 +46,33 @@ function FieldDlgFrame:onOpen()
 	FieldDlgFrame:superClass().onOpen(self)
 
 	-- Fill data structure
-	self.farmlands = {}
-	for _, farmland in pairs(g_farmlandManager.farmlands) do
-		if farmland.showOnFarmlandsScreen then
+    -- Build list and precompute sortable values
+    self.farmlands = {}
+    for _, farmland in pairs(g_farmlandManager.farmlands) do
+        if farmland.showOnFarmlandsScreen then
             local farmName, farmColor, sectionName, sectionOrder = FieldDlgFrame:getFarmNameAndColor(farmland)
-			table.insert(self.farmlands, {farmName = farmName, farmColor = farmColor, farmland = farmland, sectionName = sectionName, sectionOrder = sectionOrder})
-        end
-	end
-
-    table.sort(self.farmlands, function(a, b)
-        if a.sectionOrder == b.sectionOrder then
-            if tonumber(a.farmland.name) ~= nil and tonumber(b.farmland.name) ~= nil then
-                return tonumber(a.farmland.name) < tonumber(b.farmland.name)
+            local entry = {farmName = farmName, farmColor = farmColor, farmland = farmland, sectionName = sectionName, sectionOrder = sectionOrder}
+            entry.farmlandArea = farmland.areaInHa
+            if farmland.field ~= nil then
+                entry.fieldArea = farmland.field.areaHa
+                local x, z = farmland.field:getCenterOfFieldWorldPosition()
+                local fruitTypeIndexPos, _ = FSDensityMapUtil.getFruitTypeIndexAtWorldPos(x, z)
+                if fruitTypeIndexPos ~= nil then
+                    local fruitTypePos = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndexPos)
+                    entry.cropName = fruitTypePos.fillType.title
+                else
+                    entry.cropName = "--"
+                end
             else
-                return a.farmland.name < b.farmland.name
+                entry.fieldArea = nil
+                entry.cropName = "--"
             end
-        else
-            return a.sectionOrder < b.sectionOrder
+            table.insert(self.farmlands, entry)
         end
-    end)
+    end
+
+    -- Apply sort: primary by owner (sectionOrder), secondary according to selected column
+    self:applySorting()
 
     -- finalize dialog
 	self.overviewTable:reloadData()
@@ -88,9 +97,114 @@ function FieldDlgFrame:getNumberOfItemsInSection(list, section)
 end
 
 
+-- Apply sorting while keeping owner (sectionOrder) as primary key
+function FieldDlgFrame:applySorting()
+    table.sort(self.farmlands, function(a, b)
+        if a.sectionOrder ~= b.sectionOrder then
+            return a.sectionOrder < b.sectionOrder
+        end
+
+        -- same owner/section -> apply chosen secondary sort
+        local asc = self.sortAscending and 1 or -1
+
+        local function cmpString(x, y)
+            if x == y then return 0 end
+            if x == nil then return 1 end
+            if y == nil then return -1 end
+            return (x < y) and -1 or 1
+        end
+
+        if self.sortColumn == "number" then
+            local an = tonumber(a.farmland.name)
+            local bn = tonumber(b.farmland.name)
+            if an and bn then
+                if an == bn then return false end
+                return (an < bn) == self.sortAscending
+            else
+                return (a.farmland.name < b.farmland.name) == self.sortAscending
+            end
+        elseif self.sortColumn == "farmlandArea" then
+            if a.farmlandArea == b.farmlandArea then
+                return (a.farmland.name < b.farmland.name) == self.sortAscending
+            end
+            return (a.farmlandArea < b.farmlandArea) == self.sortAscending
+        elseif self.sortColumn == "fieldArea" then
+            local va = a.fieldArea or -1
+            local vb = b.fieldArea or -1
+            if va == vb then
+                return (a.farmland.name < b.farmland.name) == self.sortAscending
+            end
+            return (va < vb) == self.sortAscending
+        elseif self.sortColumn == "crop" then
+            local c = cmpString(a.cropName, b.cropName)
+            if c == 0 then
+                return (a.farmland.name < b.farmland.name) == self.sortAscending
+            end
+            return (c < 0) == self.sortAscending
+        else
+            -- default: keep original behaviour (numeric name else text)
+            local an = tonumber(a.farmland.name)
+            local bn = tonumber(b.farmland.name)
+            if an and bn then
+                return an < bn
+            else
+                return a.farmland.name < b.farmland.name
+            end
+        end
+    end)
+end
+
+
+-- Header click handlers: toggle sort column / direction and refresh
+function FieldDlgFrame:onClickSortByNumber()
+    if self.sortColumn == "number" then
+        self.sortAscending = not self.sortAscending
+    else
+        self.sortColumn = "number"
+        self.sortAscending = true
+    end
+    self:applySorting()
+    self.overviewTable:reloadData()
+end
+
+function FieldDlgFrame:onClickSortByFarmlandArea()
+    if self.sortColumn == "farmlandArea" then
+        self.sortAscending = not self.sortAscending
+    else
+        self.sortColumn = "farmlandArea"
+        self.sortAscending = false
+    end
+    self:applySorting()
+    self.overviewTable:reloadData()
+end
+
+function FieldDlgFrame:onClickSortByFieldArea()
+    if self.sortColumn == "fieldArea" then
+        self.sortAscending = not self.sortAscending
+    else
+        self.sortColumn = "fieldArea"
+        self.sortAscending = false
+    end
+    self:applySorting()
+    self.overviewTable:reloadData()
+end
+
+function FieldDlgFrame:onClickSortByCrop()
+    if self.sortColumn == "crop" then
+        self.sortAscending = not self.sortAscending
+    else
+        self.sortColumn = "crop"
+        self.sortAscending = true
+    end
+    self:applySorting()
+    self.overviewTable:reloadData()
+end
+
+
 function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
     if list == self.overviewTable then
-        local thisFarmland      = self.farmlands[index].farmland
+        local entry = self.farmlands[index]
+        local thisFarmland      = entry.farmland
 
         -- Set attributes for the farmland output
         local isSale = FS25_MyCollection_DH ~=nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer[thisFarmland.name] ~= nil and FS25_MyCollection_DH.LimitedFieldSellAndBuy.farmlandsOnOffer[thisFarmland.name] == true
@@ -100,11 +214,10 @@ function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
             cell:getAttribute("farmlandName").textColor = cell:getAttribute("farmlandAreaHa").textColor  -- default
         end
         cell:getAttribute("farmlandName"):setText(thisFarmland.name)
-        cell:getAttribute("farmlandAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(thisFarmland.areaInHa)) .. g_i18n:getAreaUnit())
+        cell:getAttribute("farmlandAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(entry.farmlandArea)) .. g_i18n:getAreaUnit())
 
-        local farmName, farmColor = FieldDlgFrame:getFarmNameAndColor(thisFarmland)
-        cell:getAttribute("farmlandOwner"):setText(farmName)
-        cell:getAttribute("farmlandOwner").textColor = farmColor
+        cell:getAttribute("farmlandOwner"):setText(entry.farmName)
+        cell:getAttribute("farmlandOwner").textColor = entry.farmColor
 
         -- Set attributes for the field output
         if (thisFarmland.field ~= nil) then
@@ -152,8 +265,12 @@ function FieldDlgFrame:populateCellForItemInSection(list, section, index, cell)
                 cell:getAttribute("ftIcon"):setVisible(false)
             end
             -- end
-            cell:getAttribute("fieldAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(field.areaHa)) .. g_i18n:getAreaUnit())
-            cell:getAttribute("fieldCrop"):setText(fruitNamePos)
+            if entry.fieldArea ~= nil then
+                cell:getAttribute("fieldAreaHa"):setText(string.format("%1.2f ", g_i18n:getArea(entry.fieldArea)) .. g_i18n:getAreaUnit())
+            else
+                cell:getAttribute("fieldAreaHa"):setText("--")
+            end
+            cell:getAttribute("fieldCrop"):setText(entry.cropName)
             cell:getAttribute("fieldCropState"):setText(fruitStatePos)
         else
             cell:getAttribute("fieldAreaHa"):setText("--")
@@ -218,23 +335,6 @@ function FieldDlgFrame:getFarmNameAndColor(thisFarmland)
 end
 
 
-
---- Get the field polygon vertices from the map. These determine the field boundary in the game's
---- initial state. These do not reflect changes made by terrain modification or plowing, to get a
---- field polygon with those changes, use the FieldScanner
----@return table [{x, y, z}] field polygon vertices
-function FieldDlgFrame:getFieldPolygon(field)
-    local unpackedVertices = field:getDensityMapPolygon():getVerticesList()
-    local vertices = {}
-    for i = 1, #unpackedVertices, 2 do
-        local x, z = unpackedVertices[i], unpackedVertices[i + 1]
-        table.insert(vertices, { x = x, y = getTerrainHeightAtWorldPos(g_currentMission.terrainRootNode, x, 1, z), z = z })
-    end
-    return vertices
-end
-
-
-
 function FieldDlgFrame:onButtonWarpToField()
     dbPrintf("FieldDlgFrame:onButtonWarpField()")
 
@@ -258,62 +358,8 @@ function FieldDlgFrame:onButtonWarpToField()
 
     if g_localPlayer ~= nil and g_localPlayer:getCurrentVehicle() ~= nil then
         g_localPlayer:leaveVehicle()
-        -- local curVehicle = g_localPlayer:getCurrentVehicle()
-        -- curVehicle:doLeaveVehicle()
     end
     g_localPlayer:teleportTo(warpX, warpY + dropHeight, warpZ, false, false)
-
-
-    -- Test, to get mor Infos
-    -- if true then
-    --     local x, z = thisFarmland.field:getCenterOfFieldWorldPosition()
-    --     local y = getTerrainHeightAtWorldPos(g_currentMission.terrainRootNode, x, 0, z)
-    --     dbPrintf("Field Center: x=%s, y=%s, z=%s", x, y, z)
-
-    --     local isOnField, densityBits, groundType = FSDensityMapUtil.getFieldDataAtWorldPosition(x,y,z)
-    --     local fruitTypeIndex, growthState = FSDensityMapUtil.getFruitTypeIndexAtWorldPos(x, z)
-    --     local fruitTypeName = "--"
-    --     if fruitTypeIndex ~= nil then
-    --         local fruitType = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndex)
-    --         print("fruitTypeName=" .. fruitType.name)
-    --         fruitTypeName = fruitType.fillType.title
-    --     end
-    --     --local fieldType = FSDensityMapUtil.getFieldTypeAtWorldPos(x, z)
-    --     dbPrintf("isOnField=%s, densityBits=%s, groundType=%s, fruitTypeIndex=%s, fruitTypeName=%s, growthState=%s", tostring(isOnField), tostring(densityBits), tostring(groundType), fruitTypeIndex, fruitTypeName, tostring(growthState))
-
-    --     dbPrintf("Field Polygon")
-    --     local vertices = FieldDlgFrame:getFieldPolygon(thisFarmland.field)
-    --     for i, point in ipairs(vertices) do
-    --         dbPrintf("  %s -->  x=%s y=%s z=%s ", i, point.x, point.y, point.z)
-    --     end
-    --     dbPrintf("")
-
-    --     local width = 2
-    --     local length = 2
-    --     dbPrintf("Field Area: c1=(%s, %s), c2=(%s, %s), c3=(%s, %s))", x - width / 2, z - length / 2, x + width / 2, z - length / 2, x - width / 2, z + length / 2)
-    --     for _, fruitType in pairs(g_fruitTypeManager:getFruitTypes()) do
-    --         if not (fruitType == g_fruitTypeManager:getFruitTypeByName("MEADOW")) then
-    --             local fruitTypeIndex = fruitType.index
-    --             -- local fruitValue, _, _, _    = FSDensityMapUtil.getFruitArea(spec.fruitTypeIndex, x, z, x1, z1, x2, z2, nil, spec.allowsForageGrowthState)
-    --             -- local fruitValue, numPixels, totalNumPixels, c = FSDensityMapUtil.getFruitArea(fruitType.index, x - width / 2, z - length / 2, x + width / 2, z, x, z + length / 2, true, true)
-    --             local fruitValue, numPixels, totalNumPixels, c = FSDensityMapUtil.getFruitArea(fruitType.index, x - width / 2, z - length / 2, x + width / 2, z - length / 2, x - width / 2, z + length / 2, true, true)
-    --             if fruitValue > 0 or numPixels > 0 then
-    --                 dbPrintf("getFruitArea (allowsForageGrowthState = true):  fruitTypeindex=%2s, fruitTypeName=%15s, fruitValue=%s, numPixels=%s, totalNumPixels=%s, c=%s", fruitType.index, fruitType.name, fruitValue, numPixels, totalNumPixels, c)
-    --             end
-
-    --             -- fruitValue, numPixels, totalNumPixels, c = FSDensityMapUtil.getFruitArea(fruitType.index, x - width / 2, z - length / 2, x + width / 2, z - length / 2, x - width / 2, z + length / 2, true, false)
-    --             -- if fruitValue > 0 or numPixels > 0 then
-    --             --     dbPrintf("getFruitArea (allowsForageGrowthState = false): fruitTypeindex=%2s, fruitTypeName=%15s, fruitValue=%s, numPixels=%s, totalNumPixels=%s, c=%s", fruitType.index, fruitType.name, fruitValue, numPixels, totalNumPixels, c)
-    --             -- end
-
-    --             fruitValue, numPixels, totalNumPixels, growthState = FSDensityMapUtil.getFruitArea(fruitType.index, x, z, x, z, x, z, true, true)
-    --             if fruitValue > 0 or numPixels > 0 then
-    --                 dbPrintf("getFruitArea Point (allowsForageGrowthState = true):  fruitTypeindex=%2s, fruitTypeName=%15s, fruitValue=%s, numPixels=%s, totalNumPixels=%s, growthState=%s", fruitType.index, fruitType.name, fruitValue, numPixels, totalNumPixels, growthState)
-    --             end
-    --         end
-    --     end
-    -- end
-    -- Test end
 end
 
 

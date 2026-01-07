@@ -1,11 +1,11 @@
-<modDesc descVersion="96">
+<modDesc descVersion="105">
 	<author>Fetty42</author>
-	<version>1.0.1.0</version>
+	<version>1.0.2.0</version>
 	<title>
 		<en>Farmland Overview</en>
 		<de>Feldübersicht</de>
 		<fr>Aperçu Terres Agricoles</fr>
-		<uk>Огляд сільськогосподарських угідь</uk>
+		<uk>Oгляд сільськогосподарських угідь</uk>
 	</title>
     <description>
         <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
@@ -21,11 +21,10 @@ Die Anzeige kann mit der Tastenkombination RShift + L aufgerufen werden.
 
 Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
 
-Changelog
+Changelog 1.0.2.0:
+- Sortierfunktion im Fenster hinzugefügt: Sortieren nach Nr., Landfläche, Feldfläche, Fruchtart (Owner-Gruppierung bleibt erhalten).
 - Übersetzung für Ukrainisch  hinzugefügt (Danke an daniilua)
 - Automatisch zum letzten verwendeten Feld springen, wenn das Fenster erneut geöffnet wird.
-- (intern) Markierung der zum verkauf stehenden Felder (LimitedFieldSellAndBuy MOD) hinzugefügt.
-
 
 Changelog 1.0.1.0:
 - Fehlerhafte Anzeige von Flächengrößen in Acres behoben
@@ -46,6 +45,11 @@ The display can be called up with the key combination RShift + L.
 
 Currently, rice/olive and grape fields created via the construction menu are not yet displayed.
 
+Changelog 1.0.2.0:
+- Added sorting in the dialog: sort by No., Farmland area, Field area, Crop (keeps owner grouping).
+- Added translation for Ukrainian (thanks to daniilua)
+- Automatically jump to the last used field when reopening the dialog.
+
 Changelog 1.0.1.0:
 - Fixed incorrect display of area sizes in acres
 - Fixed crash when using explicit farmland names that are not numbers (e.g. on the "Riverbend Springs Edit" MOD map)
@@ -65,6 +69,11 @@ L'affichage peut être appelé avec la combinaison de touches Maj. droite + L.
 
 Actuellement, les champs de riz/olives et de raisins créés via le menu de construction ne sont pas encore affichés.
 
+Changelog 1.0.2.0:
+- Ajout du tri dans la fenêtre : trier par N°, surface des terres, surface du champ, culture (regroupement par propriétaire conservé).
+- Ajout de la traduction en ukrainien (merci à daniilua)
+- Saut automatique au dernier champ utilisé lors de la réouverture de la fenêtre.
+
 Changelog 1.0.1.0:
 - Correction de l'affichage incorrect des tailles de surface en acres
 - Correction du crash lors de l'utilisation de noms explicites de terres agricoles qui ne sont pas des nombres (par exemple, sur la carte MOD "Riverbend Springs Edit")
@@ -83,6 +92,11 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 Відображення можна викликати за допомогою комбінації клавіш RShift + L.
 
 Наразі рисові/оливкові та виноградні поля, створені через меню будівництва, ще не відображаються.
+
+Changelog 1.0.2.0:
+- Додано сортування у вікні: сортування за №, площею угідь, площею поля, культурою (групування за власником збережено).
+- Додано переклад українською (дякую daniilua)
+- Автоматичний перехід до останнього використаного поля при повторному відк
 
 Changelog 1.0.1.0:
 - Виправлено некоректне відображення розмірів площ в акрах

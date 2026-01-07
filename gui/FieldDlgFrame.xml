@@ -10,11 +10,11 @@
 
             <!-- Main list -->
             <Bitmap profile="FarmlandDlgList" id="tableHeaderBox" position="45px -90px" size="950px 50px">
-                <Text profile="FarmlandDlgHeaderRight" position="15px -0px" size="45px 40.77px" text="$l10n_ui_fieldDlg_hbFieldNum"/>
+                <Button profile="FarmlandDlgHeaderRight" position="15px -0px" size="45px 40.77px" text="$l10n_ui_fieldDlg_hbFieldNum" onClick="onClickSortByNumber"/>
                 <Text profile="FarmlandDlgHeaderLeft" position="90px -0px" size="140px 40.77px" text="$l10n_ui_fieldDlg_hbOwner"/>
-                <Text profile="FarmlandDlgHeaderRight" position="230px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFarmlandArea"/>
-                <Text profile="FarmlandDlgHeaderRight" position="330px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFieldArea"/>
-                <Text profile="FarmlandDlgHeaderLeft" position="460px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCrop"/>
+                <Button profile="FarmlandDlgHeaderRight" position="230px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFarmlandArea" onClick="onClickSortByFarmlandArea"/>
+                <Button profile="FarmlandDlgHeaderRight" position="330px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFieldArea" onClick="onClickSortByFieldArea"/>
+                <Button profile="FarmlandDlgHeaderLeft" position="460px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCrop" onClick="onClickSortByCrop"/>
                 <Text profile="FarmlandDlgHeaderLeft" position="650px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCropState"/>
                 <ThreePartBitmap profile="fs25_lineSeparatorBottom" position="0px 2px" />
             </Bitmap>
