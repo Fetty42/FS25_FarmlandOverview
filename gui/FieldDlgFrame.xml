@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
     <Bitmap profile="dialogFullscreenBg" id="dialogBg" />
-    <GuiElement profile="fs25_dialogBg" id="dialogElement" size="1110px 800px">        
+    <GuiElement profile="fs25_dialogBg" id="dialogElement" size="1540px 800px">        
         <ThreePartBitmap profile="fs25_dialogBgMiddle" />
         <ThreePartBitmap profile="fs25_dialogBgTop" />
         <ThreePartBitmap profile="fs25_dialogBgBottom" />
@@ -9,29 +9,45 @@
             <Text profile="dialogTitle" text="$l10n_ui_fieldDlg_title" id="dialogTitleElement" position="0px -30px" />
 
             <!-- Main list -->
-            <Bitmap profile="FarmlandDlgList" id="tableHeaderBox" position="45px -90px" size="950px 50px">
+            <Bitmap profile="FarmlandDlgList" id="tableHeaderBox" position="45px -90px" size="1440px 50px">
                 <Button profile="FarmlandDlgHeaderRight" position="15px -0px" size="45px 40.77px" text="$l10n_ui_fieldDlg_hbFieldNum" onClick="onClickSortByNumber"/>
-                <Text profile="FarmlandDlgHeaderLeft" position="90px -0px" size="140px 40.77px" text="$l10n_ui_fieldDlg_hbOwner"/>
-                <Button profile="FarmlandDlgHeaderRight" position="230px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFarmlandArea" onClick="onClickSortByFarmlandArea"/>
-                <Button profile="FarmlandDlgHeaderRight" position="330px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFieldArea" onClick="onClickSortByFieldArea"/>
-                <Button profile="FarmlandDlgHeaderLeft" position="460px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCrop" onClick="onClickSortByCrop"/>
-                <Text profile="FarmlandDlgHeaderLeft" position="650px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCropState"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="90px -0px" size="110px 40.77px" text="$l10n_ui_fieldDlg_hbOwner"/>
+                <Button profile="FarmlandDlgHeaderRight" position="200px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFarmlandArea" onClick="onClickSortByFarmlandArea"/>
+                <Button profile="FarmlandDlgHeaderRight" position="300px -0px" size="100px 40.77px" text="$l10n_ui_fieldDlg_hbFieldArea" onClick="onClickSortByFieldArea"/>
+                <Button profile="FarmlandDlgHeaderLeft" position="455px -0px" size="200px 40.77px" text="$l10n_ui_fieldDlg_hbCrop" onClick="onClickSortByCrop"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="620px -0px" size="180px 40.77px" text="$l10n_ui_fieldDlg_hbCropState"/>
                 <ThreePartBitmap profile="fs25_lineSeparatorBottom" position="0px 2px" />
+                <Text profile="FarmlandDlgHeaderLeft" position="800px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbYield"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="885px -0px" size="70px 40.77px" text="$l10n_ui_fieldDlg_hbFert"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="955px -0px" size="70px 40.77px" text="$l10n_ui_fieldDlg_hbLime"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="1025px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbWeeds"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="1110px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbPlowed"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="1195px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbMulched"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="1280px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbRolled"/>
+                <Text profile="FarmlandDlgHeaderLeft" position="1365px -0px" size="85px 40.77px" text="$l10n_ui_fieldDlg_hbStones"/>
             </Bitmap>
 
-            <SmoothList profile="FarmlandDlgList" id="overviewTable" position="50px -145px" size="945px 550px" focusInit="onOpen" focusChangeTop="nil" focusChangeBottom="nil" onDoubleClick="onButtonWarpToField">
-                <ListItem profile="FarmlandDlgListItem"  name="orderRowTemplate" size="950px 40.77px">
+            <SmoothList profile="FarmlandDlgList" id="overviewTable" position="50px -145px" size="1440px 550px" focusInit="onOpen" focusChangeTop="nil" focusChangeBottom="nil" onDoubleClick="onButtonWarpToField">
+                <ListItem profile="FarmlandDlgListItem"  name="orderRowTemplate" size="1440px 40.77px">
                     <Text profile="FarmlandDlgRowCellRight" position="1px 0px" size="55px 40.77px" name="farmlandName" textLayoutMode="scrolling"/>
-                    <Text profile="FarmlandDlgRowCellLeft" position="90px 0px" size="140px 40.77px" name="farmlandOwner" textLayoutMode="scrolling"/>
-                    <Text profile="FarmlandDlgRowCellRight" position="230px 0px" size="100px 40.77px" name="farmlandAreaHa" />
-                    <Text profile="FarmlandDlgRowCellRight" position="330px 0px" size="100px 40.77px" name="fieldAreaHa" />
-                    <Bitmap profile="FarmlandDlgRowCellImage" position="455px 0px" name="ftIcon" />
-                    <Text profile="FarmlandDlgRowCellLeft" position="485px 0px" size="170px 40.77px" name="fieldCrop" textLayoutMode="scrolling"/>
-                    <Text profile="FarmlandDlgRowCellLeft" position="650px 0px" size="200px 40.77px" name="fieldCropState" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="90px 0px" size="110px 40.77px" name="farmlandOwner" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellRight" position="200px 0px" size="100px 40.77px" name="farmlandAreaHa" />
+                    <Text profile="FarmlandDlgRowCellRight" position="300px 0px" size="100px 40.77px" name="fieldAreaHa" />
+                    <Bitmap profile="FarmlandDlgRowCellImage" position="425px 0px" name="ftIcon" />
+                    <Text profile="FarmlandDlgRowCellLeft" position="455px 0px" size="170px 40.77px" name="fieldCrop" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="620px 0px" size="180px 40.77px" name="fieldCropState" textLayoutMode="scrolling"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="800px 0px" size="85px 40.77px" name="fieldYield"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="885px 0px" size="70px 40.77px" name="fieldFert"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="955px 0px" size="70px 40.77px" name="fieldLime"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="1025px 0px" size="85px 40.77px" name="fieldWeeds"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="1110px 0px" size="85px 40.77px" name="fieldPlowed"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="1195px 0px" size="85px 40.77px" name="fieldMulched"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="1280px 0px" size="85px 40.77px" name="fieldRolled"/>
+                    <Text profile="FarmlandDlgRowCellLeft" position="1365px 0px" size="85px 40.77px" name="fieldStones"/>
                 </ListItem>
             </SmoothList>
 
-            <ThreePartBitmap profile="fs25_listSliderBox" position="-70px -60px" size="12px 555px" with="anchorTopRight">
+            <ThreePartBitmap profile="fs25_listSliderBox" position="-15px -60px" size="12px 555px" with="anchorTopRight">
                 <Slider profile="fs25_listSlider" size="6px 547px" dataElementId="overviewTable" id="tableSlider" />
             </ThreePartBitmap>  
         </GuiElement>
