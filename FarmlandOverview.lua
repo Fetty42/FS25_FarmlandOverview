@@ -1,6 +1,5 @@
 -- Author: Fetty42
--- Date: 2024-12-09
--- Version: 1.0.0.0
+-- Version: 1.1.0.0
 
 local dbPrintfOn = false
 local dbInfoPrintfOn = false
@@ -44,6 +43,14 @@ FieldOverview.modName = g_currentModName
 
 FieldOverview.dlg			= nil
 
+-- =========================================================
+-- Harvest multiplier cache (AFI parity)
+-- =========================================================
+
+FS25_FarmlandOverview = FS25_FarmlandOverview or {}
+FS25_FarmlandOverview.stoneCoveragePctByFarmlandId =
+    FS25_FarmlandOverview.stoneCoveragePctByFarmlandId or {}
+
 source(FieldOverview.dir .. "gui/FieldDlgFrame.lua")
 
 function FieldOverview:loadMap(name)
@@ -55,6 +62,22 @@ function FieldOverview:ShowFieldDlg(actionName, keyStatus, arg3, arg4, arg5)
 
 	FieldOverview.dlg = nil
 	g_gui:loadProfiles(FieldOverview.dir .. "gui/guiProfiles.xml")
+
+    -- Safety: ensure FieldDlgFrame class is loaded (source can fail silently on some errors)
+    if FieldDlgFrame == nil then
+        local ok, err = pcall(function()
+            source(FieldOverview.dir .. "gui/FieldDlgFrame.lua")
+        end)
+
+        if not ok then
+            print(string.format(
+                "[FS25_FarmlandOverview] ERROR loading gui/FieldDlgFrame.lua: %s",
+                tostring(err)
+            ))
+            return
+        end
+    end
+
 	local fieldDlgFrame = FieldDlgFrame.new(g_i18n)
 	g_gui:loadGui(FieldOverview.dir .. "gui/FieldDlgFrame.xml", "FieldDlgFrame", fieldDlgFrame)
 	FieldOverview.dlg = g_gui:showDialog("FieldDlgFrame")

@@ -1,11 +1,11 @@
-<modDesc descVersion="105">
+<modDesc descVersion="107">
 	<author>Fetty42</author>
-	<version>1.0.2.0</version>
+	<version>1.1.0.0</version>
 	<title>
 		<en>Farmland Overview</en>
 		<de>Feldübersicht</de>
 		<fr>Aperçu Terres Agricoles</fr>
-		<uk>Oгляд сільськогосподарських угідь</uk>
+		<uk>Огляд Сільськогосподарських Угідь</uk>
 	</title>
     <description>
         <de><![CDATA[Mit diesem MOD kann man sich schnell eine Übersicht aller Farmländer und Felder anzeigen lassen. Die eigenen werden gleich als erstes angezeigt. Man kann sich auch direkt zu einem Land/Feld teleportieren lassen.
@@ -20,6 +20,11 @@ Die folgenden Infos werden angezeigt:
 Die Anzeige kann mit der Tastenkombination RShift + L aufgerufen werden.
 
 Aktuell werden über das Bau-Menü angelegte Reis-/Oliven- und Traubenfelder noch nicht angezeigt.
+
+Changelog 1.1.0.0:
+- Zusätzliche Feldzustands- und Ertragsdetails von @Rodderik übernommen (Thanks a lot for the great work!):
+- Ändert die Status-Spalte so, dass Wachstumsstufen statt „Bereit zur Ernte“ angezeigt werden, damit du z. B. bei Gras (und ähnlichem) siehst, ob es vollständig ausgewachsen ist.
+- Fügt Ertragsbonus + Spalten für Dünger/Kalk/Unkraut/Gepflügt/Gemulcht/Gewalzt/Steine hinzu (basierend auf Density-Map-Abtastung).
 
 Changelog 1.0.2.0:
 - Sortierfunktion im Fenster hinzugefügt: Sortieren nach Nr., Landfläche, Feldfläche, Fruchtart (Owner-Gruppierung bleibt erhalten).
@@ -45,6 +50,12 @@ The display can be called up with the key combination RShift + L.
 
 Currently, rice/olive and grape fields created via the construction menu are not yet displayed.
 
+Changelog 1.1.0.0:
+- Added additional field status and yield details from @Rodderik (Thanks a lot for the great work!):
+- Changes the status column to show growth stages instead of "Ready for harvest", so you can see, e.g., for grass (and similar) whether it's fully grown.
+- Adds yield bonus + columns for fertilizer/lime/weeds/plowed/mulched/rolled/stones (based on density map sampling).
+
+
 Changelog 1.0.2.0:
 - Added sorting in the dialog: sort by No., Farmland area, Field area, Crop (keeps owner grouping).
 - Added translation for Ukrainian (thanks to daniilua)
@@ -69,6 +80,11 @@ L'affichage peut être appelé avec la combinaison de touches Maj. droite + L.
 
 Actuellement, les champs de riz/olives et de raisins créés via le menu de construction ne sont pas encore affichés.
 
+Changelog 1.1.0.0:
+- Ajout de détails supplémentaires sur l'état du champ et le rendement de @Rodderik (Merci beaucoup pour ce super travail!):
+- Modifie la colonne de statut pour afficher les stades de croissance au lieu de "Prêt pour la récolte", afin que vous puissiez voir, par exemple, pour l'herbe (et similaire) si elle est complètement développée.
+- Ajoute des colonnes de bonus de rendement + pour l'engrais/la chaux/les mauvaises herbes/labouré/mulché/roulé/pierres (basé sur l'échantillonnage de la carte de densité).
+
 Changelog 1.0.2.0:
 - Ajout du tri dans la fenêtre : trier par N°, surface des terres, surface du champ, culture (regroupement par propriétaire conservé).
 - Ajout de la traduction en ukrainien (merci à daniilua)
@@ -92,6 +108,11 @@ Pour les messages d'erreur ou les suggestions, veuillez visiter : https://github
 Відображення можна викликати за допомогою комбінації клавіш RShift + L.
 
 Наразі рисові/оливкові та виноградні поля, створені через меню будівництва, ще не відображаються.
+
+Changelog 1.1.0.0:
+- Додано додаткові деталі стану поля та врожайності від @Rodderik (велике спасибі за чудову роботу!):
+- Змінює стовпець статусу, чтобы отображать стадии роста вместо "Готово к уборке", чтобы вы могли видеть, например, для травы (и подобного), полностью ли она выросла.
+- Добавляет бонус урожая + столбцы для удобрений/извести/сорняков/вспахано/замульчировано/прокручено/камни (на основе выборки карты плотности).
 
 Changelog 1.0.2.0:
 - Додано сортування у вікні: сортування за №, площею угідь, площею поля, культурою (групування за власником збережено).
@@ -126,7 +147,7 @@ Changelog 1.0.1.0:
 			<de>Felderübersicht</de>
 			<en>Farmland Overview</en>
 			<fr>Terre Agricole Aperçu</fr>
-			<uk>Огляд сільськогосподарських угідь</uk>
+			<uk>Огляд Сільськогосподарських Угідь</uk>
 		</text>
 
 	<!-- Dlg -->
@@ -134,69 +155,136 @@ Changelog 1.0.1.0:
 			<de>Übersicht der Länder und Felder</de>
 			<en>Farmland and Field Overview</en>
 			<fr>Aperçu des terres agricoles et des champs</fr>
-		        <uk>Огляд сільськогосподарських угідь та полів</uk>
+			<uk>Огляд сільськогосподарських угідь та полів</uk>
 		</text>		
         <text name="ui_fieldDlg_btnClose">
 			<de>Schließen</de>	
 			<en>Close</en>
 			<fr>Fermer</fr>
-		        <uk>Закрити</uk>
+			<uk>Закрити</uk>
 		</text>		
         <text name="ui_fieldDlg_btnWarp">
 			<de>Warp zum Land/Feld</de>	
 			<en>Warp to farmland/field</en>
 			<fr>Distorsion vers terre/champ</fr>
-		        <uk>Відвідати сільськогосподарське угіддя/поле</uk>
+			<uk>Відвідати сільськогосподарське угіддя/поле</uk>
 		</text>		
 
         <text name="ui_fieldDlg_hbFieldNum">
 			<de>Nr.</de>	
 			<en>No.</en>
 			<fr>No.</fr>
-		        <uk>Ні.</uk>
+			<uk>Ні.</uk>
 		</text>		
         <text name="ui_fieldDlg_hbOwner">
 			<de>Eigentümer</de>	
 			<en>Owner</en>
 			<fr>Propriétaire</fr>
-		        <uk>Власник</uk>
+			<uk>Власник</uk>
 		</text>		
         <text name="ui_fieldDlg_hbFarmlandArea">
 			<de>Land</de>	
 			<en>Farmland</en>
 			<fr>Terres</fr>
-		        <uk>Сільськогосподарські угіддя</uk>
+			<uk>Сільськогосподарські угіддя</uk>
 		</text>		
         <text name="ui_fieldDlg_hbFieldArea">
 			<de>Feld</de>	
 			<en>Field</en>
 			<fr>Champ</fr>
-		        <uk>Поле</uk>
+			<uk>Поле</uk>
 		</text>		
         <text name="ui_fieldDlg_hbCrop">
 			<de>Fruchtart</de>	
 			<en>Crop type</en>
 			<fr>Culture</fr>
-		        <uk>Тип культури</uk>
+			<uk>Тип культури</uk>
 		</text>		
         <text name="ui_fieldDlg_hbCropState">
 			<de>Status</de>	
 			<en>State</en>
 			<fr>Stade</fr>
-		        <uk>Статус</uk>
+			<uk>Статус</uk>
 		</text>		
 	<!-- Text -->
         <text name="ownerYou">
 			<de>Dir</de>	
 			<en>You</en>
 			<fr>Vous</fr>
-		        <uk>Ти</uk>
+			<uk>Ти</uk>
 		</text>		
         <text name="ownerUnknown">
 			<de>Unbekannt</de>	
 			<en>Unknown</en>
 			<fr>Inconnu</fr>
-		        <uk>Невідомо</uk>
-		</text>		
+			<uk>Невідомо</uk>
+		</text>
+    <!-- Extended columns -->
+        <text name="ui_fieldDlg_hbYield">
+            <de>ERTRAG</de>
+            <en>YIELD</en>
+            <fr>RENDT</fr>
+            <uk>УРОЖ.</uk>
+        </text>
+        <text name="ui_fieldDlg_hbFert">
+            <de>DÜNG</de>
+            <en>FERT</en>
+            <fr>ENGR</fr>
+            <uk>ДОБР.</uk>
+        </text>
+        <text name="ui_fieldDlg_hbLime">
+            <de>KALK</de>
+            <en>LIME</en>
+            <fr>CHAUX</fr>
+            <uk>ВАПН.</uk>
+        </text>
+        <text name="ui_fieldDlg_hbWeeds">
+            <de>UNKR</de>
+            <en>WEEDS</en>
+            <fr>HERBES</fr>
+            <uk>БУРЯН</uk>
+        </text>
+        <text name="ui_fieldDlg_hbPlowed">
+            <de>PFLUG</de>
+            <en>PLOWED</en>
+            <fr>LAB.</fr>
+            <uk>ОРАНО</uk>
+        </text>
+        <text name="ui_fieldDlg_hbMulched">
+            <de>MULCH</de>
+            <en>MULCHED</en>
+            <fr>PAILL</fr>
+            <uk>МУЛЬЧ</uk>
+        </text>
+        <text name="ui_fieldDlg_hbRolled">
+            <de>WALZ</de>
+            <en>ROLLED</en>
+            <fr>ROUL</fr>
+            <uk>КОТК.</uk>
+        </text>
+        <text name="ui_fieldDlg_hbStones">
+            <de>STEINE</de>
+            <en>STONES</en>
+            <fr>PIERR</fr>
+            <uk>КАМІН</uk>
+        </text>
+        <text name="ui_fieldDlg_valYes">
+            <de>Ja</de>
+            <en>Yes</en>
+            <fr>Oui</fr>
+            <uk>Так</uk>
+        </text>
+        <text name="ui_fieldDlg_valNo">
+            <de>Nein</de>
+            <en>No</en>
+            <fr>Non</fr>
+            <uk>Ні</uk>
+        </text>	
+        <text name="ui_fieldDlg_stateReady">
+            <de>Bereit</de>
+            <en>Ready</en>
+            <fr>Prêt</fr>
+            <uk>Готово</uk>
+        </text>
 	</l10n>
 </modDesc>
